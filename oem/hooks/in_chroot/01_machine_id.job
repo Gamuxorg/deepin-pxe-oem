@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# 解决SP1版本/etc/machine-id相同的问题
+
+if [ -e /var/lib/dbus/machine-id ]
+then
+	rm -rf /var/lib/dbus/machine-id 
+fi
+if [ -e /etc/machine-id ]
+then
+	rm -rf /etc/machine-id
+	systemd-machine-id-setup
+fi
+

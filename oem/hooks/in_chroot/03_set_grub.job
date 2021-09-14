@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# grub_old="quiet"
+# grub_new="console=tty"
+# sed -i "s%$grub_old%$grub_new%" /etc/default/grub
+

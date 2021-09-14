@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/opt/test_run/boot_up.sh
+Icon=
+Name=testrun
+Type=Application
+X-Deepin-Vendor=user-custom

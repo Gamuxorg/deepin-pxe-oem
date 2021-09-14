@@ -5,3 +5,4 @@ The PXE and OEM file configuration examples used by the deepin Linux operating s
 
 ## Author
 modified by xiaoji(345865759@163.com)
+thanks for Mr Deng and Mr Bu.

@@ -1,0 +1,20 @@
+#!/bin/bash
+cp ${OEM_DIR}/hooks/first_boot_setup.sh /usr/share/deepin-installer/hooks/first_boot_setup.sh
+cp ${OEM_DIR}/auto_start_file/testrun.desktop /usr/share/deepin-installer/
+
+mkdir -p /opt
+cp -r ${OEM_DIR}/test_run /opt/
+chmod 755 /opt/test_run/*
+
+#进入开发者模式
+[ -d /var/lib/deepin/developer-mode ] || mkdir -pv /var/lib/deepin/developer-mode
+echo -n -E 1 > /var/lib/deepin/developer-mode/enabled
+
+systemctl enable ssh
+
+#sudo免密
+sed -i '/%sudo/c%sudo   ALL=(ALL:ALL) NOPASSWD:ALL' /etc/sudoers
+
+rm -rf /bin/sh
+
+ln -s /bin/bash /bin/sh

@@ -1,0 +1,20 @@
+本套配置可同时支持amd64、arm64、misp64el的pxe引导安装
+
+1. 解压后进入到set-pxe目录下
+2. 编辑init.sh文件，编辑INTERFACE SERVER_IP等变量
+        INFTERFACE  网卡名称
+        SERVER_IP   本机的IP地址
+        PREFIX      子网掩码
+        DHCP_START  dhcp起始ip
+        DHCP_STOP   dhcp结束ip
+3. sudo ./init.sh 执行，注意执行后会覆盖/etc/dnsmasq.conf  /etc/exports  请注意备份
+4. 挂载iso，并把iso中的内容放到/var/nfs/对应的架构中
+5. 执行sudo chmod  -R 777 /var/nfs
+
+启停控制 systecmctl restart dnsmasq nfs-server
+
+如果有问题可通过sudo journalctl -u dnsmasq -f 查看日志
+如排查发现已分配ip，但没有进行后续步骤，可通过命令：
+tcpdump -i eth0 -c 8 -s 0 -w dhcp.pcap 'udp and port 67 and port 68' 
+抓区dhcp的包，查看抓包中option 60，将值配置到到dnsmasq.conf  中，并打上对应架构的tag
+
