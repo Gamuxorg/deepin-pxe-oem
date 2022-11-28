@@ -9,18 +9,6 @@ uniontech_pwd=''
 sudo apt update
 sudo apt install -y curl git sshpass openjdk-8-jdk
 
-#ac上网认证
-curl -X POST --url "http://ac.uniontech.com/ac_portal/login.php" \
-  --header "content-type: application/x-www-form-urlencoded" \
-  --data opr="pwdLogin" \
-  --data userName="${uniontech_usrname}" \
-  --data pwd="${uniontech_pwd}" \
-  --data rememberPwd='0'
-
-#系统激活
-uos-activator-cmd -s --kms kms.uniontech.com:8900:Vlc1cGIyNTBaV05v
-
-
 #下次启动自动进入pxe装机
 pxe_boot=$(efibootmgr | grep "PXE" | awk -F "*" '{print $1}' | awk -F "Boot" '{print $2}')
 echo ${USER_PASSWD} | sudo -S efibootmgr -n ${pxe_boot}
