@@ -1,9 +1,9 @@
 #!/bin/bash
 
-USER_NAME="jenkins-builder"
-USER_PASSWD='Uos123!!'
-uniontech_usrname='ut000110'
-uniontech_pwd='wbh19661007,'
+USER_NAME=""
+USER_PASSWD=''
+uniontech_usrname=''
+uniontech_pwd=''
 
 #安装必要依赖
 sudo apt update
